@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
+#include <string.h>
 #include <dirent.h>
 #include <sys/stat.h>
 #include <stdlib.h>
@@ -195,11 +196,11 @@ void printFileInfo(struct dirent *file, int mode, int size_type) {
     sprintf(file_size_str, "%s %s", file_size_str, size_name);
 
     char uid[5];
-    sprintf(uid, "%ju", eStat.st_uid);
+    sprintf(uid, "%u", eStat.st_uid);
     pws = getpwuid(atoi(uid));
 
     char gid[5];
-    sprintf(gid, "%ju", eStat.st_gid);
+    sprintf(gid, "%u", eStat.st_gid);
     file_group = getgrgid(atoi(gid));
 
     char *c_time = ctime(&eStat.st_mtime);
